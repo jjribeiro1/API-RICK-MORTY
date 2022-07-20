@@ -1,0 +1,38 @@
+{
+  "name": "api-rick-morty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node /src/index.js",
+    "dev": "nodemon /src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvsr18/API-RICK-MORTY.git"
+  },
+  "author": "João Vitor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvsr18/API-RICK-MORTY/issues"
+  },
+  "homepage": "https://github.com/jvsr18/API-RICK-MORTY#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "nodemon": "^2.0.19"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.5",
+    "swagger-ui-express": "^4.5.0"
+  }
+}
