@@ -1,6 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const {findUserByIdService} = require("../services/users.service");
+const { findUserByIdService } = require("../services/users.service");
 
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -22,13 +22,13 @@ module.exports = async (req, res, next) => {
 
   jwt.verify(token, process.env.SECRET, async function (err, decoded) {
     if (err) {
-        return res.status(400).send({ message: err.message });
+      return res.status(401).send({ message: err.message });
     }
-    const user = await findUserByIdService(decoded)
-    if(!user) {
-      return res.status(400).send({ message: "Token invalid"})
+    const user = await findUserByIdService(decoded);
+    if (!user) {
+      return res.status(401).send({ message: "Token invalid" });
     }
-    req.userId = decoded._id
+    req.userId = decoded._id;
     return next();
   });
 };
