@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const characterController = require("../controllers/characters.controller");
+const charactersController = require("../controllers/characters.controller");
 
-router.post("/create", characterController.createCharacterController);
-router.get("/", characterController.readAllCharacterController);
-router.get("/find/:id", characterController.readCharacterByIdController);
-router.get("/search", characterController.readByNameController);
-router.put("/update/:id", characterController.updateCharacterController);
-router.delete("/delete/:id", characterController.deleteCharacterController);
+router.post("/create", charactersController.createCharacterController);
+router.get("/", charactersController.readAllCharacterController);
+router.get("/find/:id", charactersController.readCharacterByIdController);
+router.get("/search", charactersController.readByNameController);
+router.put("/update/:id", charactersController.updateCharacterController);
+router.delete("/delete/:id", charactersController.deleteCharacterController);
 
 module.exports = router;
