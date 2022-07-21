@@ -23,7 +23,9 @@ const loginController = async (req, res) => {
         .send({ message: " Email or password is incorrect" });
     }
 
-    return res.status(200).send({ data: user, message: "usuario logado" });
+    const token = await authService.generateToken(user._id);
+
+    return res.status(200).send({ token });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
