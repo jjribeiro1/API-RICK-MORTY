@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
-app.use("characters", charactersRoute);
+app.use("/characters", charactersRoute);
 
 dbConnection();
 
