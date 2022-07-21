@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const usersController = require("../controllers/users.controller");
+const authMiddleware = require("../middlewares/auth.middleware");
 const {
   bodyValidation,
   isUsernameAvailable,
   isEmailAvailable,
 } = require("../middlewares/users.middleware");
 
-router.get("/", usersController.readAllUsersController);
+router.get("/", authMiddleware, usersController.readAllUsersController);
 router.post(
   "/create",
   bodyValidation,
