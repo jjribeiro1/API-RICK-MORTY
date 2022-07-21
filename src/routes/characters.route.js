@@ -4,7 +4,7 @@ const charactersController = require("../controllers/characters.controller");
 router.post("/create", charactersController.createCharacterController);
 router.get("/", charactersController.readAllCharacterController);
 router.get("/find/:id", charactersController.readCharacterByIdController);
-router.get("/search", charactersController.readByNameController);
+router.get("/search", charactersController.readCharacterByNameController);
 router.put("/update/:id", charactersController.updateCharacterController);
 router.delete("/delete/:id", charactersController.deleteCharacterController);
 
