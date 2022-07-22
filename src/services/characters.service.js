@@ -1,7 +1,7 @@
 const Character = require("../models/Character");
 
-const createCharacterService = async (character) =>
-  await Character.create(character);
+const createCharacterService = async (name, imageUrl, user) =>
+  await Character.create({ name: name, imageUrl: imageUrl, user: user });
 
 const readAllCharacterService = async () =>
   await Character.find().populate("user");

@@ -4,12 +4,17 @@ const createCharacterController = async (req, res) => {
   try {
     const { name, imageUrl } = req.body;
     const user = req.userId;
-    const character = {
-      user: user,
-      name: name,
-      imageUrl: imageUrl,
+    const character = await charactersService.createCharacterService(
+      name,
+      imageUrl,
+      user
+    );
+    const response = {
+      id: character._id,
+      user: character.user,
+      name: character.name,
+      imageUrl: character.imageUrl,
     };
-    const response = await charactersService.createCharacterService(character);
     res
       .status(201)
       .send({ character: response, message: "Character created successfully" });
