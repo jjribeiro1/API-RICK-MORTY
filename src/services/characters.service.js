@@ -17,7 +17,7 @@ const updateCharacterService = async (id, updatedCharacter) =>
   await Character.findByIdAndUpdate(id, updatedCharacter).setOptions({
     new: true,
   });
-const deleteCharacterService = async () => {};
+const deleteCharacterService = async (id) => await Character.findByIdAndDelete(id);
 
 module.exports = {
   createCharacterService,

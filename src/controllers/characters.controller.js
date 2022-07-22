@@ -94,7 +94,17 @@ const updateCharacterController = async (req, res) => {
   }
 };
 
-const deleteCharacterController = async (req, res) => {};
+const deleteCharacterController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await charactersService.deleteCharacterService(id);
+    return res
+      .status(200)
+      .send({ data: response, message: "Character deleted successfully." });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
 
 module.exports = {
   createCharacterController,
