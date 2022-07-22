@@ -74,7 +74,19 @@ const readCharacterByNameController = async (req, res) => {
   }
 };
 
-const updateCharacterController = async (req, res) => {};
+const updateCharacterController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedCharacter = req.body;
+    const response = await charactersService.updateCharacterService(
+      id,
+      updatedCharacter
+    );
+    return res.status(200).send(response);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
 
 const deleteCharacterController = async (req, res) => {};
 

@@ -13,8 +13,10 @@ const readCharacterByNameService = async (name) =>
     .sort({ _id: -1 })
     .populate("user");
 
-const updateCharacterService = async () => {};
-
+const updateCharacterService = async (id, updatedCharacter) =>
+  await Character.findByIdAndUpdate(id, updatedCharacter).setOptions({
+    new: true,
+  });
 const deleteCharacterService = async () => {};
 
 module.exports = {
