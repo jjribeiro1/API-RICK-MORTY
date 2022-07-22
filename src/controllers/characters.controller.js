@@ -53,7 +53,26 @@ const readCharacterByIdController = async (req, res) => {
   }
 };
 
-const readCharacterByNameController = async (req, res) => {};
+const readCharacterByNameController = async (req, res) => {
+  try {
+    const { name } = req.query;
+    const characters = await charactersService.readCharacterByNameService(name);
+    if (characters.length === 0) {
+      return res.status(404).send({ message: "No characters found." });
+    }
+    const response = characters.map((character) => {
+      return {
+        id: character._id,
+        user: character.user,
+        name: character.name,
+        imageUrl: character.imageUrl,
+      };
+    });
+    return res.status(200).send({ characters: response });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
 
 const updateCharacterController = async (req, res) => {};
 

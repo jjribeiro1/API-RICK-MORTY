@@ -8,7 +8,10 @@ const readAllCharacterService = async () =>
 
 const readCharacterByIdService = async (id) => await Character.findById(id);
 
-const readCharacterByNameService = async () => {};
+const readCharacterByNameService = async (name) =>
+  await Character.find({ name: { $regex: `${name}`, $options: "i" } })
+    .sort({ _id: -1 })
+    .populate("user");
 
 const updateCharacterService = async () => {};
 
