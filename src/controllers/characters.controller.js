@@ -30,7 +30,15 @@ const readAllCharacterController = async (req, res) => {
   }
 };
 
-const readCharacterByIdController = async (req, res) => {};
+const readCharacterByIdController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await charactersService.readCharacterByIdService(id);
+    res.send(response);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
 
 const readCharacterByNameController = async (req, res) => {};
 

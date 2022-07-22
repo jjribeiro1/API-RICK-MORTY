@@ -6,7 +6,7 @@ const createCharacterService = async (character) =>
 const readAllCharacterService = async () =>
   await Character.find().populate("user");
 
-const readCharacterByIdService = async () => {};
+const readCharacterByIdService = async (id) => await Character.findById(id);
 
 const readCharacterByNameService = async () => {};
 
