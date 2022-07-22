@@ -18,7 +18,13 @@ const createCharacterController = async (req, res) => {
   }
 };
 
-const readAllCharacterController = async (req, res) => {};
+const readAllCharacterController = async (req, res) => {
+  const response = await charactersService.readAllCharacterService();
+  if (response.length === 0) {
+    return res.status(404).send({ message: "No characters found" });
+  }
+  return res.status(200).send({ results: response });
+};
 
 const readCharacterByIdController = async (req, res) => {};
 
