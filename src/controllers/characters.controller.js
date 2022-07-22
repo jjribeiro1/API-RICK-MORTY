@@ -46,8 +46,14 @@ const readAllCharacterController = async (req, res) => {
 const readCharacterByIdController = async (req, res) => {
   try {
     const id = req.params.id;
-    const response = await charactersService.readCharacterByIdService(id);
-    res.send(response);
+    const character = await charactersService.readCharacterByIdService(id);
+    const response = {
+      id: character._id,
+      user: character.user,
+      name: character.name,
+      imageUrl: character.imageUrl,
+    };
+    return res.status(200).send(response);
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
