@@ -1,6 +1,7 @@
 const Character = require("../models/Character");
 
-const createCharacterService = async () => {};
+const createCharacterService = async (character) =>
+  await Character.create(character);
 
 const readAllCharacterService = async () => {};
 
