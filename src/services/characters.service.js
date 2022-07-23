@@ -3,8 +3,10 @@ const Character = require("../models/Character");
 const createCharacterService = async (name, imageUrl, user) =>
   await Character.create({ name: name, imageUrl: imageUrl, user: user });
 
-const readAllCharacterService = async () =>
-  await Character.find().populate("user");
+const readAllCharacterService = async (offset, limit) =>
+  await Character.find().skip(offset).limit(limit).populate("user");
+
+const countCharacters = () => Character.countDocuments();
 
 const readCharacterByIdService = async (id) => await Character.findById(id);
 
@@ -17,7 +19,8 @@ const updateCharacterService = async (id, updatedCharacter) =>
   await Character.findByIdAndUpdate(id, updatedCharacter).setOptions({
     new: true,
   });
-const deleteCharacterService = async (id) => await Character.findByIdAndDelete(id);
+const deleteCharacterService = async (id) =>
+  await Character.findByIdAndDelete(id);
 
 module.exports = {
   createCharacterService,
@@ -26,4 +29,5 @@ module.exports = {
   readCharacterByNameService,
   updateCharacterService,
   deleteCharacterService,
+  countCharacters,
 };
