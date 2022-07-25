@@ -5,19 +5,19 @@ const { findUserByIdService } = require("../services/users.service");
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
-    return res.status(400).send({ message: "No token provided" });
+    return res.status(401).send({ message: "No token provided" });
   }
 
   const parts = authHeader.split(" ");
 
   if (parts.length !== 2) {
-    return res.status(400).send({ message: "Badly formatted token" });
+    return res.status(401).send({ message: "Badly formatted token" });
   }
 
   const [scheme, token] = parts;
 
   if (!/^Bearer$/i.test(scheme)) {
-    return res.status(400).send({ message: "Token invalid" });
+    return res.status(401).send({ message: "Token invalid" });
   }
 
   jwt.verify(token, process.env.SECRET, async function (err, decoded) {
