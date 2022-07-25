@@ -12,7 +12,7 @@ const notFound = async (req, res, next) => {
   const idCharacter = req.params.id;
   const character = await Character.findById(idCharacter);
   if (!character) {
-    return res.status(400).send({ message: "Character not found" });
+    return res.status(404).send({ message: "Character not found" });
   }
   next();
 };
