@@ -4,7 +4,7 @@ const createCharacterService = async (name, imageUrl, user) =>
   await Character.create({ name: name, imageUrl: imageUrl, user: user });
 
 const readAllCharacterService = async (offset, limit) =>
-  await Character.find().skip(offset).limit(limit).populate("user");
+  await Character.find().sort({_id: -1}).skip(offset).limit(limit).populate("user");
 
 const countCharacters = () => Character.countDocuments();
 

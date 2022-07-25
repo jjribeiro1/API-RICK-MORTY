@@ -35,6 +35,14 @@ const readAllCharacterController = async (req, res) => {
     if (!limit) {
       limit = 8;
     }
+    const characters = await charactersService.readAllCharacterService(
+      offset,
+      limit
+    );
+
+    if (characters.length === 0) {
+      return res.status(404).send({ message: "No characters found" });
+    }
 
     const total = await charactersService.countCharacters();
     const currentUrl = req.baseUrl;
@@ -48,14 +56,6 @@ const readAllCharacterController = async (req, res) => {
         ? `${currentUrl}?limit=${limit}&offset=${previous}`
         : null;
 
-    const characters = await charactersService.readAllCharacterService(
-      limit,
-      offset
-    );
-
-    if (characters.length === 0) {
-      return res.status(404).send({ message: "No characters found" });
-    }
     const response = characters.map((character) => {
       return {
         id: character._id,
